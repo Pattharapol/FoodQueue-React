@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import FoodList from './components/FoodList';
+import FoodInput from './components/FoodInput';
+
+import uuid from 'uuid';
+
+class App extends Component {
+
+  state = {
+    items: [{ id: 1, name: "กะเพราไก่" }, { id: 2, name: "กะเพราเนื้อ" }],
+    id: uuid(),
+    item: "",
+    editItem: false,
+  };
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("submit data");
+  }
+
+  render() {
+    return (
+      <div className="container">
+        <h2 align="center">Food Queue Application</h2>
+        <div className="row">
+          <FoodInput handleSubmit={ this.handleSubmit}/>
+        </div>
+        <FoodList />
+      </div>
+    );
+  }
 }
 
 export default App;
